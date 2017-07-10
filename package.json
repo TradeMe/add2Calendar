@@ -5,13 +5,15 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "build": "rollup -c",
+    "b-iife": "rollup -c --format iife",
+    "b-umd": "rollup -c --format umd",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marcelo",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-browserify": "^0.5.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
     "gulp-load-plugins": "^1.5.0",
@@ -23,7 +25,12 @@
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.0",
+    "rollup-plugin-uglify": "^2.0.1",
     "typescript": "^2.4.1",
+    "uglify-es": "^3.0.24",
     "vinyl-buffer": "^1.0.0"
+  },
+  "dependencies": {
+    "rollup-plugin-typescript": "^0.8.1"
   }
 }
