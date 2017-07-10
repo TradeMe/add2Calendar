@@ -14,7 +14,6 @@ export class Add2CalendarService {
         Add2CalendarService._factory = [
             (event) => new GoogleCalendarGenerator(event),
             (event) => new YahooCalendarGenerator(event),
-            (event) => null,
             (event) => new IcsCalendarGenerator(event),
             (event) => new IcsCalendarGenerator(event),
         ];
