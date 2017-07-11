@@ -9,6 +9,7 @@
     "preserveConstEnums": true,
     "declaration": true,
     "suppressImplicitAnyIndexErrors": true,
+    "sourceMap": true,
     "outDir": "../dist"
   },
   "filesGlob": [

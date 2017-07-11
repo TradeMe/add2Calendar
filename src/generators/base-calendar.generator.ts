@@ -1,6 +1,8 @@
 'use strict';
 import {EventModel} from "../model/event.model";
+
 export const MS_IN_MINUTES = 60 * 1000;
+export const DATE_POCTUATION_REGEX = /-|:|\.\d+/g;
 
 export abstract class BaseCalendarGenerator {
     protected startTime: string;
@@ -14,7 +16,7 @@ export abstract class BaseCalendarGenerator {
     }
 
     protected formatTime (date: Date): string {
-        return date.toISOString().replace(/-|:|\.\d+/g, '');
+        return date.toISOString().replace(DATE_POCTUATION_REGEX, '');
     }
 
     protected calculateEndTime (event): string {

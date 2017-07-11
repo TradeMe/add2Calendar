@@ -2,7 +2,7 @@
 import {BaseCalendarGenerator} from "./base-calendar.generator";
 import {EventModel} from "../model/event.model";
 
-const GOOGLE_URL = 'https://www.google.com/calendar/render?action=TEMPLATE';
+export const GOOGLE_URL = 'https://www.google.com/calendar/render?action=TEMPLATE';
 
 export class GoogleCalendarGenerator extends BaseCalendarGenerator{
 

@@ -2,7 +2,7 @@
 import {BaseCalendarGenerator, MS_IN_MINUTES} from "./base-calendar.generator";
 import {EventModel} from "../model/event.model";
 
-const YAHOO_URL = 'http://calendar.yahoo.com/?v=60&view=d&type=20';
+export const YAHOO_URL = 'http://calendar.yahoo.com/?v=60&view=d&type=20';
 
 export class YahooCalendarGenerator extends BaseCalendarGenerator{
 
@@ -29,7 +29,7 @@ export class YahooCalendarGenerator extends BaseCalendarGenerator{
 
     // Remove timezone from event time
     private getSt () {
-        return this.formatTime(new Date((<any>this.event.start) - (this.event.start.getTimezoneOffset() * MS_IN_MINUTES))) || ''
+        return this.formatTime(new Date((<any>this.event.start) - (this.event.start.getTimezoneOffset() * MS_IN_MINUTES))) || '';
     }
 
     public get href (): string {
