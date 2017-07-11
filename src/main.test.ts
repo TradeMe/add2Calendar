@@ -36,7 +36,6 @@ describe('add2Calendar', () => {
                 let expectedUrl = new GoogleCalendarGenerator(model).href;
 
                 // Act
-                debugger;
                 let serviceUrl = (<any>service).getHrefFor(CalendarTypeEnum.google, model);
 
                 // Assert
@@ -48,7 +47,6 @@ describe('add2Calendar', () => {
         describe('getFor', () => {
             it('should return GoogleCalendarGenerator for google', () => {
                 // Act
-                debugger;
                 let generator = (<any>Add2CalendarService).getFor(CalendarTypeEnum.google);
 
                 // Assert
