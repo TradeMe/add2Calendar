@@ -66,7 +66,7 @@ var add2Calendar=function(t){"use strict";function e(t,e){function n(){this.cons
 And then copy:
 ```javascript
 add2Calendar.Add2CalendarService.getHrefFor(
-    	CalendarTypeEnum.google, 
+    	add2Calendar.CalendarTypeEnum.google,
         {			
           	title: 'Get on the front page of HN',
             start: new Date('June 15, 2013 19:00'),
