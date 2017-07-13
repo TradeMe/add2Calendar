@@ -67,8 +67,8 @@ And then copy:
 ```javascript
 add2Calendar.Add2CalendarService.getHrefFor(
     	add2Calendar.CalendarTypeEnum.google,
-        {			
-          	title: 'Get on the front page of HN',
+        {
+            title: 'Get on the front page of HN',
             start: new Date('June 15, 2013 19:00'),
             duration: 120,
             end: new Date('June 15, 2013 23:00'),
