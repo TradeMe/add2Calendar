@@ -8,7 +8,7 @@
     "build": "rollup -c --sourcemap",
     "build:iife": "rollup -c --format iife",
     "build:umd": "rollup -c --format umd --sourcemap",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "author": "Marcelo",
   "license": "ISC",
