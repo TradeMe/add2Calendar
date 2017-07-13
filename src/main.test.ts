@@ -24,23 +24,48 @@ describe('add2Calendar', () => {
         });
 
         describe('getHrefFor', () => {
-            it('should get the value from the href property', () => {
+            it('should get the href value for google', () => {
                 // Arrange
-                let service = { ... Add2CalendarService };
-
-                let spyFor_getFor =
-                    jasmine.createSpy('getFor').and.returnValue(GoogleCalendarGenerator);
-
-                (<any>service).getFor = spyFor_getFor;
-
                 let expectedUrl = new GoogleCalendarGenerator(model).href;
 
                 // Act
-                let serviceUrl = (<any>service).getHrefFor(CalendarTypeEnum.google, model);
+                let serviceUrl = (<any>Add2CalendarService).getHrefFor(CalendarTypeEnum.google, model);
 
                 // Assert
                 expect(serviceUrl).toBe(expectedUrl);
-                expect(spyFor_getFor).toHaveBeenCalledWith(CalendarTypeEnum.google);
+            });
+
+            it('should get the href value for yahoo', () => {
+                // Arrange
+                let expectedUrl = new YahooCalendarGenerator(model).href;
+
+                // Act
+                let serviceUrl = (<any>Add2CalendarService).getHrefFor(CalendarTypeEnum.yahoo, model);
+
+                // Assert
+                expect(serviceUrl).toBe(expectedUrl);
+            });
+
+            it('should get the href value for iCalendar', () => {
+                // Arrange
+                let expectedFileBlob = new IcsCalendarGenerator(model).href;
+
+                // Act
+                let serviceFileBlob = (<any>Add2CalendarService).getHrefFor(CalendarTypeEnum.iCalendar, model);
+
+                // Assert
+                expect(serviceFileBlob).toBe(expectedFileBlob);
+            });
+
+            it('should get the href value for outlook', () => {
+                // Arrange
+                let expectedFileBlob = new IcsCalendarGenerator(model).href;
+
+                // Act
+                let serviceFileBlob = (<any>Add2CalendarService).getHrefFor(CalendarTypeEnum.outlook, model);
+
+                // Assert
+                expect(serviceFileBlob).toBe(expectedFileBlob);
             });
         });
 
