@@ -1,5 +1,3 @@
-'use strict';
-
 import {} from 'jasmine';
 
 import {GOOGLE_URL, GoogleCalendarGenerator} from "./google-calendar.generator";

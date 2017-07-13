@@ -1,5 +1,3 @@
-'use strict';
-
 import {} from 'jasmine';
 
 import {YAHOO_URL, YahooCalendarGenerator} from "./yahoo-calendar.generator";

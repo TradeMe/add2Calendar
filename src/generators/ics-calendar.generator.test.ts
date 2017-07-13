@@ -1,5 +1,3 @@
-'use strict';
-
 import {} from 'jasmine';
 
 import {EventModel} from "../model/event.model";

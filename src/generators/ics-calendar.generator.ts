@@ -1,5 +1,4 @@
-'use strict';
-import {BaseCalendarGenerator, MS_IN_MINUTES} from "./base-calendar.generator";
+import {BaseCalendarGenerator} from "./base-calendar.generator";
 import {EventModel} from "../model/event.model";
 
 export class IcsCalendarGenerator extends BaseCalendarGenerator {

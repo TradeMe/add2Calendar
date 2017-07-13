@@ -1,5 +1,3 @@
-'use strict';
-
 import {Add2CalendarService} from "./main";
 import {TestConstants} from "./generators/test-constants";
 import {EventModel} from "./model/event.model";

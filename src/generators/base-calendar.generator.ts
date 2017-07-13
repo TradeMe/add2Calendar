@@ -1,4 +1,3 @@
-'use strict';
 import {EventModel} from "../model/event.model";
 
 export const MS_IN_MINUTES = 60 * 1000;

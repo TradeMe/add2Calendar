@@ -1,4 +1,3 @@
-'use strict';
 import {BaseCalendarGenerator} from "./base-calendar.generator";
 import {EventModel} from "../model/event.model";
 

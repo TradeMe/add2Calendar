@@ -1,4 +1,3 @@
-'use strict';
 import {BaseCalendarGenerator, MS_IN_MINUTES} from "./base-calendar.generator";
 import {EventModel} from "../model/event.model";
 
@@ -17,12 +16,12 @@ export class YahooCalendarGenerator extends BaseCalendarGenerator{
 
         // Yahoo dates are crazy, we need to convert the duration from minutes to hh:mm
         let yahooHourDuration = eventDuration < 600 ?
-            '0' + Math.floor((eventDuration / 60)) :
-            Math.floor((eventDuration / 60)) + '';
+            `0${Math.floor((eventDuration / 60))}` :
+            `${Math.floor((eventDuration / 60))}`;
 
         let yahooMinuteDuration = eventDuration % 60 < 10 ?
-            '0' + eventDuration % 60 :
-            eventDuration % 60 + '';
+            `0${eventDuration % 60}` :
+            `${eventDuration % 60}`;
 
         return yahooHourDuration + yahooMinuteDuration;
     }

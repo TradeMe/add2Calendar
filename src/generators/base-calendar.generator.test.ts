@@ -1,5 +1,3 @@
-'use strict';
-
 import {} from 'jasmine';
 
 import {BaseCalendarGenerator, DATE_POCTUATION_REGEX, MS_IN_MINUTES} from "./base-calendar.generator";

@@ -1,5 +1,3 @@
-'use strict';
-
 export class EventModel {
     // Event title
     public title: string;

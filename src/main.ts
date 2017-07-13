@@ -1,10 +1,8 @@
-'use strict';
 import {CalendarTypeEnum} from "./model/calendar-type.enum";
 import {EventModel} from "./model/event.model";
 import {GoogleCalendarGenerator} from "./generators/google-calendar.generator";
 import {YahooCalendarGenerator} from "./generators/yahoo-calendar.generator";
 import {IcsCalendarGenerator} from "./generators/ics-calendar.generator";
-import {BaseCalendarGenerator} from "./generators/base-calendar.generator";
 
 export class Add2CalendarService {
 
