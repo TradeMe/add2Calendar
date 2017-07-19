@@ -2,6 +2,7 @@ import {BaseCalendarGenerator} from "./base-calendar.generator";
 import {EventModel} from "../model/event.model";
 
 export const GOOGLE_URL = 'https://www.google.com/calendar/render?action=TEMPLATE';
+export const DATE_POCTUATION_REGEX = /-|:|\.\d+/g;
 
 export class GoogleCalendarGenerator extends BaseCalendarGenerator{
 
@@ -9,15 +10,18 @@ export class GoogleCalendarGenerator extends BaseCalendarGenerator{
         super(event);
     }
 
+    protected formatTime (date: Date): string {
+        return date.toISOString().replace(DATE_POCTUATION_REGEX, '');
+    }
+
     public get href (): string {
         return encodeURI([
             GOOGLE_URL,
             `&text=${(this.event.title || '')}`,
-            `&dates=${(this.startTime || '')}`,
-            `/${(this.endTime || '')}`,
+            `&dates=${(this.startTime || '')}/${(this.endTime || '')}`,
             `&details=${(this.event.description || '')}`,
             `&location=${(this.event.address || '')}`,
-            '&sprop=&sprop=name:'
+            `&sprop=${(this.event.url || '')}`
         ].join(''));
     }
 }

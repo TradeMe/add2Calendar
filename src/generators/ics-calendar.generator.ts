@@ -13,7 +13,7 @@ export class IcsCalendarGenerator extends BaseCalendarGenerator {
                 'BEGIN:VCALENDAR',
                 'VERSION:2.0',
                 'BEGIN:VEVENT',
-                `URL:${this.event.documentURL}`,
+                `URL:${this.event.url}`,
                 `DTSTART:${(this.startTime || '')}`,
                 `DTEND:${(this.endTime || '')}`,
                 `SUMMARY:${(this.event.title || '')}`,

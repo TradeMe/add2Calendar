@@ -18,5 +18,5 @@ export class EventModel {
     // Event Description
     public description: string;
 
-    public documentURL: string;
+    public url: string;
 }

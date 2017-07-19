@@ -24,7 +24,7 @@ describe('add2Calendar', () => {
                     address: expected.address,
                     start: TestConstants.date_1970_01_01,
                     end: TestConstants.date_1970_01_02,
-                    documentURL: expected.documentURL
+                    url: expected.documentURL
                 };
 
                 let generator = new IcsCalendarGenerator(model);

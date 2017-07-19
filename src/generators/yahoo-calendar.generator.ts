@@ -26,19 +26,15 @@ export class YahooCalendarGenerator extends BaseCalendarGenerator{
         return yahooHourDuration + yahooMinuteDuration;
     }
 
-    // Remove timezone from event time
-    private getSt () {
-        return this.formatTime(new Date((<any>this.event.start) - (this.event.start.getTimezoneOffset() * MS_IN_MINUTES))) || '';
-    }
-
     public get href (): string {
         return encodeURI([
             YAHOO_URL,
             `&title=${(this.event.title || '')}`,
-            `&st=${this.getSt()}`,
+            `&st=${this.startTime}`,
             `&dur=${(this.getYahooEventDuration() || '')}`,
             `&desc=${(this.event.description || '')}`,
-            `&in_loc=${(this.event.address || '')}`
+            `&in_loc=${(this.event.address || '')}`,
+            `&url=${(this.event.url || '')}`
         ].join(''));
     }
 }
