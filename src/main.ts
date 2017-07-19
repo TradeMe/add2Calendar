@@ -1,15 +1,22 @@
+import {GoogleCalendarGenerator} from "./generators/google-calendar.generator";
+import {IcsCalendarGenerator} from "./generators/ics-calendar.generator";
+import {YahooCalendarGenerator} from "./generators/yahoo-calendar.generator";
 import {CalendarTypeEnum} from "./model/calendar-type.enum";
 import {EventModel} from "./model/event.model";
-import {GoogleCalendarGenerator} from "./generators/google-calendar.generator";
-import {YahooCalendarGenerator} from "./generators/yahoo-calendar.generator";
-import {IcsCalendarGenerator} from "./generators/ics-calendar.generator";
 
 export class Add2CalendarService {
 
-    private static _factory: Function[];
+    public static getHrefFor(type: CalendarTypeEnum, event: EventModel): string {
+        const genType = Add2CalendarService.factory[type] as typeof Object;
 
-    private static _constructor: void = (() => {
-        Add2CalendarService._factory = [
+        return new (genType as any)(event).href;
+    }
+
+    // tslint:disable-next-line
+    private static factory: Function[];
+
+    private static stConstructor: void = (() => {
+        Add2CalendarService.factory = [
             GoogleCalendarGenerator,
             YahooCalendarGenerator,
             IcsCalendarGenerator,
@@ -17,13 +24,8 @@ export class Add2CalendarService {
         ];
     })();
 
-    private static getFor (type: CalendarTypeEnum): Function {
-        return Add2CalendarService._factory[type];
-    }
-
-    public static getHrefFor (type: CalendarTypeEnum, event: EventModel): string {
-        let genType = <typeof Object> Add2CalendarService._factory[type];
-
-        return new (<any> genType(event)).href;
+    // tslint:disable-next-line
+    private static getFor(type: CalendarTypeEnum): Function {
+        return Add2CalendarService.factory[type];
     }
 }

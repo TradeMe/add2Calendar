@@ -1,41 +1,40 @@
-import {} from 'jasmine';
-
-import {BaseCalendarGenerator, MS_IN_MINUTES} from "./base-calendar.generator";
+import {} from "jasmine";
 import {EventModel} from "../model/event.model";
+import {BaseCalendarGenerator, MS_IN_MINUTES} from "./base-calendar.generator";
 import {TestDates} from "./test-dates";
 
-describe('add2Calendar', () => {
-    let expected_getTime_ErrorMsgReg = /Cannot read property 'getTime' of/;
-    let expected_end_ErrorMsgReg = /Cannot read property 'end' of/;
-    let expected_convertToGMT_ErrorMsgReg = /Cannot read property 'convertToGMT' of/;
-    let expectedInvalidTimeValueErrorMsgReg = /Invalid time value/;
-    let expected_invalidInterval_ErrorMsgReg = /You have to provide either the duration or end/;
+describe("add2Calendar", () => {
+    // tslint:disable
+    const expected_getTime_ErrorMsgReg = /Cannot read property 'getTime' of/;
+    const expected_end_ErrorMsgReg = /Cannot read property 'end' of/;
+    const expected_convertToGMT_ErrorMsgReg = /Cannot read property 'convertToGMT' of/;
+    const expected_invalidInterval_ErrorMsgReg = /You have to provide either the duration or end/;
+    // tslint:enable
 
-
-    describe('base-calendar.generator', () => {
+    describe("base-calendar.generator", () => {
         let model: EventModel;
 
         let getGenerator: () => BaseCalendarGenerator;
 
         beforeEach(() => {
-            model = <EventModel> {
+            model = {
+                end: TestDates._1970_01_02,
                 start: TestDates._1970_01_01,
-                end: TestDates._1970_01_02
-            };
+            } as EventModel;
         });
 
         getGenerator = () => {
             return new BaseTestCalendarGenerator(model);
         };
 
-        describe('constructor', () => {
-            it('should assign the start and end dates', () => {
+        describe("constructor", () => {
+            it("should assign the start and end dates", () => {
                 // Arrange
-                let expectedStartDate = TestDates._1970_01_01_ISO_W_TZ;
-                let expectedEndDate = TestDates._1970_01_02_ISO_W_TZ;
+                const expectedStartDate = TestDates._1970_01_01_ISO_W_TZ;
+                const expectedEndDate = TestDates._1970_01_02_ISO_W_TZ;
 
                 // Act
-                let generator = <any> getGenerator();
+                const generator = getGenerator() as any;
 
                 // Assert
                 expect(generator.startTime).toBe(expectedStartDate);
@@ -43,60 +42,68 @@ describe('add2Calendar', () => {
             });
         });
 
-        describe('formatTime', () => {
-            it('should format the given time accordingly', () => {
+        describe("formatTime", () => {
+            it("should format the given time accordingly", () => {
                 // Arrange
-                let expectedDate = TestDates._1970_01_01_ISO_W_TZ;
-                let date = TestDates._1970_01_01;
+                const expectedDate = TestDates._1970_01_01_ISO_W_TZ;
+                const date = TestDates._1970_01_01;
 
                 // Act
-                let formatedDate = (<any>getGenerator()).formatTime(date);
+                const formatedDate = (getGenerator() as any).formatTime(date);
 
                 // Assert
                 expect(formatedDate).toBe(expectedDate);
             });
 
-            it('should throw a format error if the date is not informed', () => {
+            it("should throw a format error if the date is not informed", () => {
                 // Arrange
-                let generator = getGenerator();
+                const generator = getGenerator();
 
                 // Act + Assert
-                expect(() => (<any> generator).formatTime(null)).toThrowError(expected_getTime_ErrorMsgReg);
-                expect((<any>generator).formatTime).toThrowError(expected_convertToGMT_ErrorMsgReg);
+                expect(() => (generator as any).formatTime(null)).toThrowError(expected_getTime_ErrorMsgReg);
+                expect((generator as any).formatTime).toThrowError(expected_convertToGMT_ErrorMsgReg);
             });
         });
 
-        describe('calculateEndTime', () => {
-            it('should calculate the endTime accordingly if the end time is not provided', () => {
+        describe("calculateEndTime", () => {
+            it("should calculate the endTime accordingly if the end time is not provided", () => {
                 // Arrange
                 model.end = null;
                 model.duration = 30;
-                let expectedDate = (<any> getGenerator()).formatTime(
+                const expectedDate = (getGenerator() as any).formatTime(
                     new Date(TestDates._1970_01_01.getTime() + (model.duration * MS_IN_MINUTES)));
 
                 // Act
-                let endDate = (<any> getGenerator()).calculateEndTime(model);
+                const endDate = (getGenerator() as any).calculateEndTime(model);
 
                 // Assert
                 expect(endDate).toBe(expectedDate);
             });
 
-            describe('Invalid inputs', () => {
+            describe("Invalid inputs", () => {
 
-                it('should throw an error for null or undefined entry', () => {
-                    expect((<any> getGenerator()).calculateEndTime).toThrowError(expected_end_ErrorMsgReg);
+                it("should throw an error for null or undefined entry", () => {
+                    expect(
+                        (getGenerator() as any).calculateEndTime,
+                    ).toThrowError(expected_end_ErrorMsgReg);
                 });
 
-                it('should throw an error if the input is an empty object', () => {
-                    expect(() => (<any> getGenerator()).calculateEndTime({})).toThrowError(expected_invalidInterval_ErrorMsgReg);
+                it("should throw an error if the input is an empty object", () => {
+                    expect(() =>
+                        (getGenerator() as any).calculateEndTime({}),
+                    ).toThrowError(expected_invalidInterval_ErrorMsgReg);
                 });
 
-                it('should throw an error if input has no start date and no end date', () => {
-                    expect(() => (<any> getGenerator()).calculateEndTime({duration: 30})).toThrowError(expected_getTime_ErrorMsgReg);
+                it("should throw an error if input has no start date and no end date", () => {
+                    expect(() =>
+                        (getGenerator() as any).calculateEndTime({duration: 30}),
+                    ).toThrowError(expected_getTime_ErrorMsgReg);
                 });
 
-                it('should throw an error if input has no duration and no end date', () => {
-                    expect(() => (<any> getGenerator()).calculateEndTime({start: new Date()})).toThrowError(expected_invalidInterval_ErrorMsgReg);
+                it("should throw an error if input has no duration and no end date", () => {
+                    expect(() =>
+                        (getGenerator() as any).calculateEndTime({start: new Date()}),
+                    ).toThrowError(expected_invalidInterval_ErrorMsgReg);
                 });
             });
         });

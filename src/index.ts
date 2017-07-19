@@ -1,1 +1,1 @@
-export {Add2CalendarService} from './main'
+export {Add2CalendarService} from "./main";

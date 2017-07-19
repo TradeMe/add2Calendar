@@ -1,37 +1,39 @@
-import {} from 'jasmine';
+import {} from "jasmine";
 
-import {GOOGLE_URL, GoogleCalendarGenerator} from "./google-calendar.generator";
 import {EventModel} from "../model/event.model";
+import {GOOGLE_URL, GoogleCalendarGenerator} from "./google-calendar.generator";
 import {TestDates} from "./test-dates";
 
-describe('add2Calendar', () => {
-    describe('google-calendar.generator', () => {
-        describe('href', () => {
-            it('should be a valid url', () => {
+describe("add2Calendar", () => {
+    describe("google-calendar.generator", () => {
+        describe("href", () => {
+            it("should be a valid url", () => {
                 // Arrange
-                let expected = {
-                    startTime: TestDates._1970_01_01_ISO,
+                const expected = {
+                    address: "address and space",
+                    description: "description and space",
                     endTime: TestDates._1970_01_02_ISO,
-                    title: 'title and space',
-                    description: 'description and space',
-                    address: 'address and space'
+                    startTime: TestDates._1970_01_01_ISO,
+                    title: "title and space",
                 };
 
-                let model = <EventModel> {
-                    title: expected.title,
-                    description: expected.description,
+                const model = {
                     address: expected.address,
+                    description: expected.description,
+                    end: TestDates._1970_01_02,
                     start: TestDates._1970_01_01,
-                    end: TestDates._1970_01_02
-                };
-debugger;
-                let generator = new GoogleCalendarGenerator(model);
+                    title: expected.title,
+                } as EventModel;
 
-                let expectedUrl = encodeURI(
-                    `${GOOGLE_URL}&text=${expected.title}&dates=${expected.startTime}/${expected.endTime}&details=${expected.description}&location=${expected.address}&sprop=`);
+                const generator = new GoogleCalendarGenerator(model);
+
+                const expectedUrl = encodeURI(
+                    // tslint:disable-next-line
+                    `${GOOGLE_URL}&text=${expected.title}&dates=${expected.startTime}/${expected.endTime}&details=${expected.description}&location=${expected.address}&sprop=`,
+                );
 
                 // Act
-                let url = generator.href;
+                const url = generator.href;
 
                 // Assert
                 expect(url).toBe(expectedUrl);

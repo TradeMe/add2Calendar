@@ -8,7 +8,8 @@
     "build": "rollup -c --sourcemap",
     "build:iife": "rollup -c --format iife",
     "build:umd": "rollup -c --format umd --sourcemap",
-    "test": "karma start"
+    "test": "karma start",
+    "tslint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "author": "Marcelo",
   "license": "ISC",
@@ -30,6 +31,7 @@
     "karma-typescript": "^3.0.4",
     "rollup-plugin-multi-entry": "^2.0.1",
     "rollup-plugin-uglify": "^2.0.1",
+    "tslint": "^5.5.0",
     "typescript": "^2.4.1",
     "uglify-es": "^3.0.24",
     "vinyl-buffer": "^1.0.0"

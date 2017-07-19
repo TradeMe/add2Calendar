@@ -1,55 +1,56 @@
-import {} from 'jasmine';
+import {} from "jasmine";
 
-import {YAHOO_URL, YahooCalendarGenerator} from "./yahoo-calendar.generator";
 import {EventModel} from "../model/event.model";
-import {TestDates} from "./test-dates";
 import {MS_IN_MINUTES} from "./base-calendar.generator";
+import {TestDates} from "./test-dates";
+import {YAHOO_URL, YahooCalendarGenerator} from "./yahoo-calendar.generator";
 
-describe('add2Calendar', () => {
-    describe('yahoo-calendar.generator', () => {
+describe("add2Calendar", () => {
+    describe("yahoo-calendar.generator", () => {
         let expected: any;
         let model: EventModel;
         let generator: any;
 
         beforeEach(() => {
             expected = {
-                startTime: TestDates._1970_01_01_ISO,
+                address: "address and space",
+                description: "description and space",
                 endTime: TestDates._1970_01_02_ISO,
-                title: 'title and space',
-                description: 'description and space',
-                address: 'address and space'
+                startTime: TestDates._1970_01_01_ISO,
+                title: "title and space",
             };
 
-            model = <EventModel> {
-                title: expected.title,
-                description: expected.description,
+            model = {
                 address: expected.address,
+                description: expected.description,
+                end: TestDates._1970_01_02,
                 start: TestDates._1970_01_01,
-                end: TestDates._1970_01_02
-            };
+                title: expected.title,
+            } as EventModel;
 
             generator = new YahooCalendarGenerator(model);
         });
 
-        describe('href', () => {
-            it('should be a valid url', () => {
+        describe("href", () => {
+            it("should be a valid url", () => {
                 // Arrange
-                let expectedUrl = encodeURI(
+                const expectedUrl = encodeURI(
+                    // tslint:disable-next-line
                     `${YAHOO_URL}&title=${expected.title}&st=${generator.startTime}&dur=${generator.getYahooEventDuration()}&desc=${expected.description}&in_loc=${expected.address}&url=`);
 
                 // Act
-                let url = generator.href;
+                const url = generator.href;
 
                 // Assert
                 expect(url).toBe(expectedUrl);
             });
         });
 
-        describe('getYahooEventDuration', () => {
-            it('should be on the format yahoo expects', () => {
-                let expectedYahooEventDuration = '2400';
+        describe("getYahooEventDuration", () => {
+            it("should be on the format yahoo expects", () => {
+                const expectedYahooEventDuration = "2400";
 
-                let  duration = generator.getYahooEventDuration();
+                const  duration = generator.getYahooEventDuration();
 
                 expect(duration).toBe(expectedYahooEventDuration);
             });
