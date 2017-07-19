@@ -2,7 +2,7 @@ import {} from 'jasmine';
 
 import {YAHOO_URL, YahooCalendarGenerator} from "./yahoo-calendar.generator";
 import {EventModel} from "../model/event.model";
-import {TestConstants} from "./test-constants";
+import {TestDates} from "./test-dates";
 import {MS_IN_MINUTES} from "./base-calendar.generator";
 
 describe('add2Calendar', () => {
@@ -13,8 +13,8 @@ describe('add2Calendar', () => {
 
         beforeEach(() => {
             expected = {
-                startTime: TestConstants.isoDate_1970_01_01,
-                endTime: TestConstants.isoDate_1970_01_02,
+                startTime: TestDates._1970_01_01_ISO,
+                endTime: TestDates._1970_01_02_ISO,
                 title: 'title and space',
                 description: 'description and space',
                 address: 'address and space'
@@ -24,8 +24,8 @@ describe('add2Calendar', () => {
                 title: expected.title,
                 description: expected.description,
                 address: expected.address,
-                start: TestConstants.date_1970_01_01,
-                end: TestConstants.date_1970_01_02
+                start: TestDates._1970_01_01,
+                end: TestDates._1970_01_02
             };
 
             generator = new YahooCalendarGenerator(model);
@@ -35,24 +35,13 @@ describe('add2Calendar', () => {
             it('should be a valid url', () => {
                 // Arrange
                 let expectedUrl = encodeURI(
-                    `${YAHOO_URL}&title=${expected.title}&st=${generator.getSt()}&dur=${generator.getYahooEventDuration()}&desc=${expected.description}&in_loc=${expected.address}`);
+                    `${YAHOO_URL}&title=${expected.title}&st=${generator.startTime}&dur=${generator.getYahooEventDuration()}&desc=${expected.description}&in_loc=${expected.address}&url=`);
 
                 // Act
                 let url = generator.href;
 
                 // Assert
                 expect(url).toBe(expectedUrl);
-            });
-        });
-
-        describe('getSt', () => {
-            it('should remove timezone from event time', () => {
-                let date = new Date((<any> TestConstants.date_1970_01_01) - ( TestConstants.date_1970_01_01.getTimezoneOffset() * MS_IN_MINUTES));
-                let expectedDate = generator.formatTime(date )
-
-                let st = generator.getSt();
-
-                expect(st).toBe(expectedDate)
             });
         });
 

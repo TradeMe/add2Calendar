@@ -1,7 +1,7 @@
 import {} from 'jasmine';
 
 import {EventModel} from "../model/event.model";
-import {TestConstants} from "./test-constants";
+import {TestDates} from "./test-dates";
 import {IcsCalendarGenerator} from "./ics-calendar.generator";
 
 describe('add2Calendar', () => {
@@ -10,8 +10,8 @@ describe('add2Calendar', () => {
             it('should be a valid blob url', () => {
                 // Arrange
                 let expected = {
-                    startTime: TestConstants.isoDate_1970_01_01,
-                    endTime: TestConstants.isoDate_1970_01_02,
+                    startTime: TestDates._1970_01_01_ISO_W_TZ,
+                    endTime: TestDates._1970_01_02_ISO_W_TZ,
                     title: 'title and space',
                     description: 'description and space',
                     address: 'address and space',
@@ -22,8 +22,8 @@ describe('add2Calendar', () => {
                     title: expected.title,
                     description: expected.description,
                     address: expected.address,
-                    start: TestConstants.date_1970_01_01,
-                    end: TestConstants.date_1970_01_02,
+                    start: TestDates._1970_01_01,
+                    end: TestDates._1970_01_02,
                     url: expected.documentURL
                 };
 

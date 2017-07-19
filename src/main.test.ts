@@ -1,5 +1,5 @@
 import {Add2CalendarService} from "./main";
-import {TestConstants} from "./generators/test-constants";
+import {TestDates} from "./generators/test-dates";
 import {EventModel} from "./model/event.model";
 import {CalendarTypeEnum} from "./model/calendar-type.enum";
 
@@ -16,8 +16,8 @@ describe('add2Calendar', () => {
                 title: 'title and space',
                 description: 'description and space',
                 address: 'address and space',
-                start: TestConstants.date_1970_01_01,
-                end: TestConstants.date_1970_01_02
+                start: TestDates._1970_01_01,
+                end: TestDates._1970_01_02
             };
         });
 

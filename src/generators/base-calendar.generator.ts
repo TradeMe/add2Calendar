@@ -1,6 +1,7 @@
 import {EventModel} from "../model/event.model";
 
 export const MS_IN_MINUTES = 60 * 1000;
+export const DATE_POCTUATION_REGEX = /-|:|\.\d+/g;
 
 export abstract class BaseCalendarGenerator {
     protected startTime: string;
@@ -9,7 +10,6 @@ export abstract class BaseCalendarGenerator {
     public abstract get href(): string;
 
     constructor (protected event: EventModel) {
-        debugger;
         this.startTime = this.formatTime(event.start);
         this.endTime = this.calculateEndTime(event);
     }
@@ -43,8 +43,14 @@ export abstract class BaseCalendarGenerator {
     };
 
     protected calculateEndTime (event): string {
-        return event.end ?
-            this.formatTime(event.end) :
-            this.formatTime(new Date(event.start.getTime() + (event.duration * MS_IN_MINUTES)));
+        if (event.end) {
+            return this.formatTime(event.end);
+        }
+
+        if (!event.duration) {
+            throw new Error('You have to provide either the duration or end');
+        }
+
+        return this.formatTime(new Date(event.start.getTime() + (event.duration * MS_IN_MINUTES)));
     }
 }
