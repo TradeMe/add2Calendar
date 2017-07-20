@@ -29,7 +29,7 @@ describe("add2Calendar", () => {
 
                 const expectedUrl = encodeURI(
                     // tslint:disable-next-line
-                    `${GOOGLE_URL}&text=${expected.title}&dates=${expected.startTime}/${expected.endTime}&details=${expected.description}&location=${expected.address}&sprop=`,
+                    `${GOOGLE_URL}&dates=${expected.startTime}/${expected.endTime}&location=${expected.address}&sprop=&text=${expected.title}&details=${expected.description}`,
                 );
 
                 // Act

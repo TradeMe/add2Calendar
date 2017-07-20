@@ -15,16 +15,7 @@ export abstract class BaseCalendarGenerator {
     }
 
     protected formatTime(date: Date): string {
-
-        const gmtDate = this.convertToGMT(date);
-
-        return date.getUTCFullYear() +
-            this.pad(gmtDate.getUTCMonth() + 1) +
-            this.pad(gmtDate.getUTCDate()) +
-            "T" + this.pad(gmtDate.getUTCHours()) +
-            this.pad(gmtDate.getUTCMinutes()) +
-            this.pad(gmtDate.getUTCSeconds()) +
-            this.formatTimezone(gmtDate);
+        return date.toISOString().replace(DATE_POCTUATION_REGEX, "");
     }
 
     protected calculateEndTime(event): string {
@@ -37,18 +28,5 @@ export abstract class BaseCalendarGenerator {
         }
 
         return this.formatTime(new Date(event.start.getTime() + (event.duration * MS_IN_MINUTES)));
-    }
-
-    private pad(n): string {
-        return n < 10 ? "0" + n : n;
-    }
-
-    private formatTimezone(date) {
-        const tz = date.getTimezoneOffset() / 60;
-        return (tz < 0 ? "+" : "-") + Math.abs(tz) + "00";
-    }
-
-    private convertToGMT(date: Date): Date {
-        return new Date(date.getTime() + date.getTimezoneOffset() * MS_IN_MINUTES);
     }
 }

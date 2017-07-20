@@ -10,14 +10,10 @@ export class GoogleCalendarGenerator extends BaseCalendarGenerator {
         super(event);
     }
 
-    protected formatTime(date: Date): string {
-        return date.toISOString().replace(DATE_POCTUATION_REGEX, "");
-    }
-
     public get href(): string {
         const chunk = encodeURI(
             // tslint:disable-next-line
-            `${GOOGLE_URL}&dates=${(this.startTime || "")}/${(this.endTime || "")}&location=${(this.event.address || "")}&location=${(this.event.address || "")}&sprop=${(this.event.url || "")}`,
+            `${GOOGLE_URL}&dates=${(this.startTime || "")}/${(this.endTime || "")}&location=${(this.event.address || "")}&sprop=${(this.event.url || "")}`,
         );
 
         return chunk

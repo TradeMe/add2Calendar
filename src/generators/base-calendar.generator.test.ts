@@ -9,6 +9,7 @@ describe("add2Calendar", () => {
     const expected_end_ErrorMsgReg = /Cannot read property 'end' of/;
     const expected_convertToGMT_ErrorMsgReg = /Cannot read property 'convertToGMT' of/;
     const expected_invalidInterval_ErrorMsgReg = /You have to provide either the duration or end/;
+    const expectedErrorCannotReadPropertyToISOString =  /Cannot read property 'toISOString' of/;
     // tslint:enable
 
     describe("base-calendar.generator", () => {
@@ -30,8 +31,8 @@ describe("add2Calendar", () => {
         describe("constructor", () => {
             it("should assign the start and end dates", () => {
                 // Arrange
-                const expectedStartDate = TestDates._1970_01_01_ISO_W_TZ;
-                const expectedEndDate = TestDates._1970_01_02_ISO_W_TZ;
+                const expectedStartDate = TestDates._1970_01_01_ISO;
+                const expectedEndDate = TestDates._1970_01_02_ISO;
 
                 // Act
                 const generator = getGenerator() as any;
@@ -45,7 +46,7 @@ describe("add2Calendar", () => {
         describe("formatTime", () => {
             it("should format the given time accordingly", () => {
                 // Arrange
-                const expectedDate = TestDates._1970_01_01_ISO_W_TZ;
+                const expectedDate = TestDates._1970_01_01_ISO;
                 const date = TestDates._1970_01_01;
 
                 // Act
@@ -60,8 +61,8 @@ describe("add2Calendar", () => {
                 const generator = getGenerator();
 
                 // Act + Assert
-                expect(() => (generator as any).formatTime(null)).toThrowError(expected_getTime_ErrorMsgReg);
-                expect((generator as any).formatTime).toThrowError(expected_convertToGMT_ErrorMsgReg);
+                expect(() => (generator as any).formatTime(null)).toThrowError(expectedErrorCannotReadPropertyToISOString); // tslint:disable-line
+                expect((generator as any).formatTime).toThrowError(expectedErrorCannotReadPropertyToISOString);
             });
         });
 

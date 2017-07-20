@@ -13,8 +13,8 @@ describe("add2Calendar", () => {
                     address: "address and space",
                     description: "description and space",
                     documentURL: "www.com",
-                    endTime: TestDates._1970_01_02_ISO_W_TZ,
-                    startTime: TestDates._1970_01_01_ISO_W_TZ,
+                    endTime: TestDates._1970_01_02_ISO,
+                    startTime: TestDates._1970_01_01_ISO,
                     title: "title and space",
                 };
 
