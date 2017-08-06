@@ -36,7 +36,7 @@ describe("add2Calendar", () => {
                 // Arrange
                 const expectedUrl = encodeURI(
                     // tslint:disable-next-line
-                    `${YAHOO_URL}&st=${generator.startTime}&dur=${generator.getYahooEventDuration()}&in_loc=${expected.address}&url=&title=${expected.title}&desc=${expected.description}`;
+                    `${YAHOO_URL}&st=${generator.startTime}&dur=${generator.getYahooEventDuration()}&in_loc=${expected.address}&url=&title=${expected.title}&desc=${expected.description}`);
 
                 // Act
                 const url = generator.href;

@@ -14,6 +14,17 @@ export abstract class BaseCalendarGenerator {
         this.endTime = this.calculateEndTime(event);
     }
 
+    protected get uid(): string {
+        return (this.s4()
+            + this.s4()
+            + "-" + this.s4()
+            + "-4" + this.s4().substr(0, 3)
+            + "-" + this.s4()
+            + "-" + this.s4()
+            + this.s4()
+            + this.s4()).toLowerCase();
+    }
+
     protected formatTime(date: Date): string {
         return date.toISOString().replace(DATE_POCTUATION_REGEX, "");
     }
@@ -28,5 +39,10 @@ export abstract class BaseCalendarGenerator {
         }
 
         return this.formatTime(new Date(event.start.getTime() + (event.duration * MS_IN_MINUTES)));
+    }
+
+    private s4(): string {
+        // tslint:disable-next-line
+        return (((1 + Math.random()) * 0x10000)|0).toString(16).substring(1);
     }
 }

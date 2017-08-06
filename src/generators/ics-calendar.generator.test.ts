@@ -29,10 +29,18 @@ describe("add2Calendar", () => {
 
                 const generator = new IcsCalendarGenerator(model);
 
+                const expectedUid = "value";
+
+                spyOnProperty(generator as any, "uid", "get").and.returnValue(expectedUid);
+
                 const expectedBlobUrl = encodeURI(
                     "data:text/calendar;charset=utf8," + [
                         "BEGIN:VCALENDAR",
+                        "PRODID:-//Destination Search//ical4j 1.0//EN",
                         "VERSION:2.0",
+                        "CALSCALE:GREGORIAN",
+                        "X-MS-OLK-FORCEINSPECTOROPEN:true",
+                        "METHOD:PUBLISH",
                         "BEGIN:VEVENT",
                         `URL:${expected.documentURL}`,
                         `DTSTART:${expected.startTime.toString()}`,
@@ -40,6 +48,9 @@ describe("add2Calendar", () => {
                         `SUMMARY:${expected.title}`,
                         `DESCRIPTION:${expected.description}`,
                         `LOCATION:${expected.address}`,
+                        "SEQUENCE:0",
+                        `DTSTAMP:${(generator as any).dtStamp}`,
+                        `UID:${expectedUid}`,
                         "END:VEVENT",
                         "END:VCALENDAR"].join("\n"));
 
