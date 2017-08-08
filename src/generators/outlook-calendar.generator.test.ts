@@ -33,7 +33,7 @@ describe("add2Calendar", () => {
 
                 const expectedUrl = encodeURI(
                     // tslint:disable-next-line
-                    `${OUTLOOK_BASE_URL}&startdt=${expected.startTime}&enddt=${expected.endTime}&uid=${expectedUid}&subject=${expected.title}&body=${expected.description}`,
+                    `${OUTLOOK_BASE_URL}&startdt=${expected.startTime}&enddt=${expected.endTime}&uid=${expectedUid}&location=${expected.address}&subject=${expected.title}&body=${expected.description}`,
                 );
 
                 // Act

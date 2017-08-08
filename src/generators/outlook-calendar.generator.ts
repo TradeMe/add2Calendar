@@ -13,7 +13,8 @@ export class OutlookCalendarGenerator extends BaseCalendarGenerator {
 
     public get href(): string {
         const chunk = encodeURI(
-            `${OUTLOOK_BASE_URL}&startdt=${(this.startTime || "")}&enddt=${(this.endTime || "")}&uid=${this.uid}`);
+            // tslint:disable-next-line
+            `${OUTLOOK_BASE_URL}&startdt=${(this.startTime || "")}&enddt=${(this.endTime || "")}&uid=${this.uid}&location=${this.event.address}`);
 
         return chunk
             + `&subject=${encodeURIComponent(this.event.title || "")}`
